@@ -10,7 +10,7 @@
 # AuthName "File Access"
 
 # This you must edit.  It is the absolute path to the .htpasswd file.
-#AuthUserFile /Users/kitmacallister/Sites/PHP-Finder/.htpasswd
+#AuthUserFile /%YOUR_DOCUMENT_ROOT_GOES_HERE%/PHP-Finder/.htpasswd
 
 # This allows any user from inside the .htpasswd file to access the
 # content if they provide the proper username and password.
