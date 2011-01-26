@@ -26,7 +26,7 @@
 	define('BROWSE',$_SERVER['DOCUMENT_ROOT'].$urlString.'/');
 	$count = substr_count($urlString,'/');
 	$ladder = '';
-	for ($i = 0; $i <= $count; $i++) {
+	for ($i = 1; $i < $count; $i++) {
     	$ladder .= '../';
 	}
 	define('LADDER',$ladder);

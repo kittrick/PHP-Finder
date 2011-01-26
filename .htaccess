@@ -1,6 +1,5 @@
 <IfModule mod_rewrite.c>
 	RewriteEngine On
-	RewriteBase /
 	RewriteRule (.+)?/?browse index.php?request=$1&%{QUERY_STRING}
 </IfModule>
 
@@ -11,8 +10,8 @@ AuthType Basic
 AuthName "File Access"
 
 # This you must edit.  It is the absolute path to the .htpasswd file.
-AuthUserFile /Users/kitmacallister/Sites/.htpasswd
+AuthUserFile /Users/kitmacallister/Sites/PHP-Finder/.htpasswd
 
 # This allows any user from inside the .htpasswd file to access the
 # content if they provide the proper username and password.
-#Require valid-user
+Require valid-user
