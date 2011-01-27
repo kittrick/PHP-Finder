@@ -22,16 +22,12 @@
 			}else{
 				$(this).addClass('clicked');
 				href = $(this).parent().attr('href');
-				ajax = href.split('/');
-				ajax = ajax.slice(0,-1);
-				dir = ajax;
-				ajax = ajax.join('/');
 				sort = $('th.active').attr('id');
 				$('td>ol').each(function(){
 					li = $(this).find('li');
 					column = $(this).attr('class');
 					ol = $('<ol/>').addClass('child');
-					$(ol).load(href+'&ajax='+encodeURIComponent(ajax)+'&sort='+sort+' ol.'+column+' li',function(response, status, xhr) {
+					$(ol).load(href+'&sort='+sort+' ol.'+column+' li',function(response, status, xhr) {
 						if (status == "error") {
 							description = 'Directory either did not exists or created an error. (May contain an .htaccess file)';
 							error = $('<li/>')

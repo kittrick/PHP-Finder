@@ -14,7 +14,7 @@
 			$this->asc = $asc;
 			$this->files = scandir($directory);
 			foreach($this->files as $file){
-				$tempfile = $this->fileObject($file);
+				$tempfile = $this->fileObject($file, $directory);
 				if($hidden == false && $tempfile->hidden != true){
 					$this->fileArray[] = $tempfile;
 				}elseif($hidden == true){
@@ -44,15 +44,14 @@
 		}
 		
 		/* Creates File Info Object */
-		function fileObject($file, $calculateFolders = false){
+		function fileObject($file, $parent, $calculateFolders = false){
 			/* Hidden Files */
 			$exceptionArray = array(
 				"Icon\r" /* OSX's Icon Alias Files */
 			);
-			$pathArray = explode('/',$file);
-			$fileObject->name = end($pathArray);
-			$fileObject->href = $fileObject->name;
-			$fileObject->absolutePath = BROWSE.$fileObject->name;
+			$fileObject->absolutePath = './'.$parent.'/'.$file;
+			$fileObject->name = $file;
+			$fileObject->href = $file;
 			$fileObject->directoryArray = explode('/',$fileObject->absolutePath);
 			$fileObject->created = filectime($fileObject->absolutePath);
 			$fileObject->modified = filemtime($fileObject->absolutePath);
@@ -297,7 +296,7 @@
 		}
 		
 		/* Parses DOM Objects into New Document */
-		function newDocument($array = array(), $echo = true, $styleArray = array(), $scriptArray = array()){
+		function newDocument($array = array(), $styleArray = array(), $scriptArray = array(), $echo = true){
 			global $document;
 			global $body;
 			
@@ -322,7 +321,7 @@
 			$type = $document->createAttribute('type');
 			$type->appendChild($document->createTextNode('image/png'));
 			$href = $document->createAttribute('href');
-			$href->appendChild($document->createTextNode(LADDER.LIBRARY_LOCATION.'/assets/images/folder.png'));
+			$href->appendChild($document->createTextNode(LIBRARY_LOCATION.'/assets/images/folder.png'));
 			$link->appendChild($rel);
 			$link->appendChild($type);
 			$link->appendChild($href);
@@ -449,17 +448,11 @@
 					}else{
 						$asc = 'false';
 					}
-					if($key->type == 'dir'){
-						$browse = '/browse?sort='.$directoryObject->sortBy.'&asc='.$asc;
-					}else{
-						$browse = '';
-					}
-					
 					
 					$a = $document->createElement('a');
 					
 					$href = $document->createAttribute('href');
-					$link = $document->createTextNode($key->href.$browse);
+					$link = $document->createTextNode('?ajax='.$key->href);
 					$a->appendChild($href);
 					$href->appendChild($link);
 					

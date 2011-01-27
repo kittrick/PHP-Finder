@@ -7,10 +7,8 @@
 	$request = array(
 		'ajax' => false,
 		'width' => 800,
-		'format' => 'XMLTable',
 		'sortArray' => array('name','created','modified','size','kind'),
 		'sort' => 'name',
-		'echo' => 'html',
 		'asc' => false
 	);
 	
@@ -20,16 +18,6 @@
 	foreach($url as $key => $val){
 		$request[$key] = $val;
 	}
-	$urlArray = explode('/',$_SERVER['REQUEST_URI']);
-	array_pop($urlArray);
-	$urlString = implode('/',$urlArray);
-	define('BROWSE',$_SERVER['DOCUMENT_ROOT'].$urlString.'/');
-	$count = substr_count($urlString,'/');
-	$ladder = '';
-	for ($i = 1; $i < $count; $i++) {
-    	$ladder .= '../';
-	}
-	define('LADDER',$ladder);
 	
 	/* Turn Strings into Bools */
 	($request['asc'] == 'false') ? $request['asc'] = false : $request['asc'] = true;
@@ -39,11 +27,12 @@
 	$doc = new Render;
 	
 	/* Create Directory Object */
-	$files = $file->directoryObject(BROWSE,$request['sort'],$request['asc']);
+	($request['ajax'] == true) ? $ajax = $request['ajax'] : $ajax = './';
+	$files = $file->directoryObject($ajax,$request['sort'],$request['asc']);
 	$columnCount = count($request['sortArray']);
 	
 	/* Handles AJAX Requests */
-	if($request['ajax'] == true) $file->formatLinks($request['ajax']);
+	$file->formatLinks($ajax);
 	
 	/* Format File Names, Dates, Links, etc. */
 	$file
@@ -54,15 +43,14 @@
 	
 	/* Render Document */
 	$doc->newDocument(
-		array('body'=> $doc->$request['format']($files,$request['sortArray'])),
-		$request['echo'],
+		array('body'=> $doc->XMLTable($files,$request['sortArray'])),
 		array(
-			LADDER.LIBRARY_LOCATION.'/assets/styles/style.php?requestWidth='.$request['width'].'&columnCount='.$columnCount,
-			LADDER.LIBRARY_LOCATION.'/assets/styles/jquery-ui-1.8.8.custom.css'),
+			LIBRARY_LOCATION.'/assets/styles/style.php?requestWidth='.$request['width'].'&columnCount='.$columnCount,
+			LIBRARY_LOCATION.'/assets/styles/jquery-ui-1.8.8.custom.css'),
 		array(
-			LADDER.LIBRARY_LOCATION.'/assets/scripts/jQuery-1.4.4.js',
-			LADDER.LIBRARY_LOCATION.'/assets/scripts/jquery-ui-1.8.8.custom.min.js',
-			LADDER.LIBRARY_LOCATION.'/assets/scripts/jquery.disable.text.select.js',
-			LADDER.LIBRARY_LOCATION.'/assets/scripts/jquery.arrowclick.js',
-			LADDER.LIBRARY_LOCATION.'/assets/scripts/scripts.js')
+			LIBRARY_LOCATION.'/assets/scripts/jQuery-1.4.4.js',
+			LIBRARY_LOCATION.'/assets/scripts/jquery-ui-1.8.8.custom.min.js',
+			LIBRARY_LOCATION.'/assets/scripts/jquery.disable.text.select.js',
+			LIBRARY_LOCATION.'/assets/scripts/jquery.arrowclick.js',
+			LIBRARY_LOCATION.'/assets/scripts/scripts.js')
 	);
