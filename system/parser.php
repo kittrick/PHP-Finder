@@ -27,7 +27,7 @@
 	$doc = new Render;
 	
 	/* Create Directory Object */
-	if(strpos($request['ajax'],'..')) die('CANNOT NAVIGATE ABOVE FILE ROOT');
+	if(strstr($request['ajax'],'..')) die('CANNOT NAVIGATE ABOVE FILE ROOT'); // Verrry basic security measure
 	($request['ajax'] == true) ? $ajax = $request['ajax'] : $ajax = './';
 	$files = $file->directoryObject($ajax,$request['sort'],$request['asc']);
 	$columnCount = count($request['sortArray']);
