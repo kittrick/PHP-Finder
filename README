@@ -1,0 +1,35 @@
+The MIT License
+
+Copyright (c) 2010 Kit MacAllister
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+------------------------------------------------------------------------------
+
+IMPORTANT
+This system is currently experimental and SHOULD NOT BE INSTALLED ON A LIVE SERVER.
+File browsers give file access, which makes your site incredibly insecure.
+At the moment no authorization, login, or authentication system has been
+Implemented. I recommend developing only on a local host. Use at your own risk.
+
+That said, please feel free to use any part of this code or it's components.
+
+CREDITS
+Silk Icons obtained under Creative Commons Attribution 2.5 License
+http://www.famfamfam.com/lab/icons/silk/
