@@ -30,7 +30,6 @@
 	if(strstr($request['ajax'],'..')) die('CANNOT NAVIGATE ABOVE FILE ROOT'); // Verrry basic security measure
 	($request['ajax'] == true) ? $ajax = $request['ajax'] : $ajax = './';
 	$files = $file->directoryObject($ajax,$request['sort'],$request['asc']);
-	$columnCount = count($request['sortArray']);
 	
 	/* Handles AJAX Requests */
 	$file->formatLinks($ajax);
@@ -46,8 +45,7 @@
 	$doc->newDocument(
 		array('body'=> $doc->XMLTable($files,$request['sortArray'])),
 		array(
-			LIBRARY_LOCATION.'/assets/styles/style.php?requestWidth='.$request['width'].'&columnCount='.$columnCount,
-			LIBRARY_LOCATION.'/assets/styles/jquery-ui-1.8.8.custom.css'),
+			LIBRARY_LOCATION.'/assets/styles/style.css'),
 		array(
 			LIBRARY_LOCATION.'/assets/scripts/jQuery-1.4.4.js',
 			LIBRARY_LOCATION.'/assets/scripts/jquery-ui-1.8.8.custom.min.js',
