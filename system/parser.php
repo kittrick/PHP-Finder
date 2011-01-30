@@ -31,10 +31,8 @@
 	($request['ajax'] == true) ? $ajax = $request['ajax'] : $ajax = './';
 	$files = $file->directoryObject($ajax,$request['sort'],$request['asc']);
 	
-	/* Handles AJAX Requests */
-	$file->formatLinks($ajax);
-	
 	/* Format File Names, Dates, Links, etc. */
+	$file->formatLinks($ajax);
 	$file
 		->formatFileSize()
 		->formatFileKind()
@@ -48,8 +46,5 @@
 			LIBRARY_LOCATION.'/assets/styles/style.css'),
 		array(
 			LIBRARY_LOCATION.'/assets/scripts/jQuery-1.4.4.js',
-			LIBRARY_LOCATION.'/assets/scripts/jquery-ui-1.8.8.custom.min.js',
-			LIBRARY_LOCATION.'/assets/scripts/jquery.disable.text.select.js',
-			LIBRARY_LOCATION.'/assets/scripts/jquery.arrowclick.js',
 			LIBRARY_LOCATION.'/assets/scripts/scripts.js')
 	);
