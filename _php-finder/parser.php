@@ -43,8 +43,8 @@
 	$doc->newDocument(
 		array('body'=> $doc->XMLTable($files,$request['sortArray'])),
 		array(
-			LIBRARY_LOCATION.'/assets/styles/style.css'),
+			'_php-finder/assets/styles/style.css'),
 		array(
-			LIBRARY_LOCATION.'/assets/scripts/jQuery-1.4.4.js',
-			LIBRARY_LOCATION.'/assets/scripts/scripts.js')
+			'_php-finder/assets/scripts/jQuery-1.4.4.js',
+			'_php-finder/assets/scripts/scripts.js')
 	);

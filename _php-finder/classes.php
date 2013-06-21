@@ -321,7 +321,7 @@
 			$type = $document->createAttribute('type');
 			$type->appendChild($document->createTextNode('image/png'));
 			$href = $document->createAttribute('href');
-			$href->appendChild($document->createTextNode(LIBRARY_LOCATION.'/assets/images/folder.png'));
+			$href->appendChild($document->createTextNode('/assets/images/folder.png'));
 			$link->appendChild($rel);
 			$link->appendChild($type);
 			$link->appendChild($href);
